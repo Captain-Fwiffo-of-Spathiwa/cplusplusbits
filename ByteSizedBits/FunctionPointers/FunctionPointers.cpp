@@ -135,6 +135,11 @@ string (*GetPtrToPetCountingFunction(Animal species))()
     return &GetNumDogs;
 }
 
+const int GetThing()
+{
+    return 7;
+}
+
 /*
     APPROACH 2: THE OLD WAY BUT A LITTLE LESS UGLY WITH C, ver 1.
 
@@ -222,4 +227,7 @@ int main()
 
     // Or we can just execute that returned result directly:
     cout << GetPtrToPetCountingFunction(Animal::Dog)() << endl;
+
+    int x = GetThing(); // Just checking that a pointless return of a const int does actually work
+    cout << x << endl;
 }
