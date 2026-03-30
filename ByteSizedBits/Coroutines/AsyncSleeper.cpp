@@ -112,7 +112,7 @@ void MakeAndRunAsyncSleeperCoroutine()
 *      ... basically means "run await_suspend() or run await_resume()".
 *      It basically decides like this:
 *
-*           expr.await_ready()? thing.await_resume(): thing.await_suspend();
+*           expr.await_ready()? expr.await_resume(): expr.await_suspend();
 *
 *      Basically.
 *

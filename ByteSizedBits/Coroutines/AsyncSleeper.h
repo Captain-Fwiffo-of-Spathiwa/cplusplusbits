@@ -39,56 +39,18 @@ struct simple_task
     using handle_type = std::coroutine_handle<promise_type>;
     handle_type coro;
 
-    simple_task(handle_type handleType)
-        : coro(handleType)
-    {
-    }
-
-    ~simple_task()
-    {
-        if (coro)
-        {
-            coro.destroy();
-        }
-    }
-
-    void resume()
-    {
-        if (coro && !coro.done())
-        {
-            coro.resume();
-        }
-    }
-
-    bool done() const
-    {
-        return !coro || coro.done();
-    }
+    simple_task(handle_type handleType) : coro(handleType) {}
+    ~simple_task() { if (coro) { coro.destroy(); } }
+    void resume() { if (coro && !coro.done()) { coro.resume(); } }
+    bool done() const { return !coro || coro.done(); }
 
     struct promise_type
     {
-        simple_task get_return_object()
-        {
-            return simple_task{ handle_type::from_promise(*this) };
-        }
-
-        std::suspend_always initial_suspend()
-        {
-            return {};
-        }
-
-        std::suspend_always final_suspend() noexcept
-        {
-            return {};
-        }
-
-        void return_void()
-        {
-        }
-
-        void unhandled_exception()
-        {
-        }
+        simple_task get_return_object() { return simple_task{ handle_type::from_promise(*this) }; }
+        std::suspend_always initial_suspend() { return {}; }
+        std::suspend_always final_suspend() noexcept { return {}; }
+        void return_void() {}
+        void unhandled_exception() {}
     };
 };
 

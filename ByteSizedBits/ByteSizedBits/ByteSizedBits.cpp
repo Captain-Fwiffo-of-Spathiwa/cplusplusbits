@@ -1,8 +1,12 @@
 // I use this file for random little tests.
 
+#include "QuickListClass.h"
+
 #include <iostream>
+#include <vector>
 using std::cout;
 using std::endl;
+using std::vector;
 
 
 
@@ -51,6 +55,15 @@ int main()
     UseArray1(&x);
     UseArray2(&x);
     UseArray3(&x);
+
+    QuickListClass quickList;
+    const vector<int>& listOfInts = quickList.GetListOfInts();
+    const vector<SomeStruct>& listOfStructs = quickList.GetListOfStructs();
+    //listOfInts[2] = 7; 
+    //listOfStructs[2].Letter = 'x';
+
+    cout << quickList.ToString() << endl;
+
 }
 
 
